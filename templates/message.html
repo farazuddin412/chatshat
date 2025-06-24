@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <h1>Real-Time Chat</h1>
+    <div id="chat"></div>
+    <input type="text" id="message" placeholder="Type a message..." autocomplete="off">
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        var socket = io();  // Connect to the WebSocket server
+
+        socket.on("message", function(data) {
+            let chat = document.getElementById("chat");
+            chat.innerHTML += "<p>" + data + "</p>";
+        });
+
+        function sendMessage() {
+            let message = document.getElementById("message").value;
+            socket.send(message);  // Send message to server
+            document.getElementById("message").value = ""; // Clear input
+        }
+    </script>
+</body>
+</html>

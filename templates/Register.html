@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head %}
+ <title>register user</title>
+ <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+{% endblock %}
+
+
+{% block body %}
+
+<h1>Hi this is Register page</h1>
+<form method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" required>
+    
+    <label for="password">Password:</label>
+    <input type="password" name="password" required>
+    
+    <button type="submit">Register</button>
+</form>
+
+{% endblock %}
