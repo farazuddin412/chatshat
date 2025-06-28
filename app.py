@@ -6,6 +6,12 @@ import secrets
 from flask_socketio import SocketIO, join_room, leave_room, send
 from flask_mail import Mail, Message
 from flask_cors import CORS
+from dotenv import load_dotenv
+import os
+
+load_dotenv() 
+
+SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
 
 
 app = Flask(__name__)
@@ -18,7 +24,7 @@ app.secret_key=secret_key
 app.config["JWT_SECRET_KEY"] = secret_key 
 
 # MySQL Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost/chatshat'
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 
 db = SQLAlchemy(app)
